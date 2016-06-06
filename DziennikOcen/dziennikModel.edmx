@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dziennik_ocenModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="kategorie_prowadzacych">
+          <Key>
+            <PropertyRef Name="kategoria_id" />
+          </Key>
+          <Property Name="kategoria_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oceny_projekt">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="projekt_id" Type="int" Nullable="false" />
+          <Property Name="ocena" Type="decimal" Precision="2" Scale="1" />
+          <Property Name="data" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oceny_przedmiot">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="przedmiot_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="przedmiot_id" Type="int" Nullable="false" />
+          <Property Name="ocena" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="data" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="projekty">
+          <Key>
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="projekt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prowadzacy_id" Type="int" />
+          <Property Name="przedmiot_id" Type="int" />
+          <Property Name="temat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="etap" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prowadzacy">
+          <Key>
+            <PropertyRef Name="prowadzacy_id" />
+          </Key>
+          <Property Name="prowadzacy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoria_id" Type="int" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="katedra" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="haslo" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="przedmioty">
+          <Key>
+            <PropertyRef Name="przedmiot_id" />
+          </Key>
+          <Property Name="przedmiot_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="etap" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studenci">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="student_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nr_indexu" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="kierunek" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="grupa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="haslo" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studenci_w_projektach">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="student_id" Type="int" Nullable="false" />
+          <Property Name="projekt_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dziennik_ocenModelStoreContainer">
+          <EntitySet Name="kategorie_prowadzacych" EntityType="Self.kategorie_prowadzacych" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="oceny_projekt" EntityType="Self.oceny_projekt" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="oceny_przedmiot" EntityType="Self.oceny_przedmiot" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="projekty" EntityType="Self.projekty" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="prowadzacy" EntityType="Self.prowadzacy" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="przedmioty" EntityType="Self.przedmioty" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="studenci" EntityType="Self.studenci" Schema="dziennik_ocen" store:Type="Tables" />
+          <EntitySet Name="studenci_w_projektach" EntityType="Self.studenci_w_projektach" Schema="dziennik_ocen" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dziennik_ocenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kategorie_prowadzacych">
+          <Key>
+            <PropertyRef Name="kategoria_id" />
+          </Key>
+          <Property Name="kategoria_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oceny_projekt">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="student_id" Type="Int32" Nullable="false" />
+          <Property Name="projekt_id" Type="Int32" Nullable="false" />
+          <Property Name="ocena" Type="Decimal" />
+          <Property Name="data" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oceny_przedmiot">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="przedmiot_id" />
+          </Key>
+          <Property Name="student_id" Type="Int32" Nullable="false" />
+          <Property Name="przedmiot_id" Type="Int32" Nullable="false" />
+          <Property Name="ocena" Type="Decimal" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="projekty">
+          <Key>
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="projekt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prowadzacy_id" Type="Int32" />
+          <Property Name="przedmiot_id" Type="Int32" />
+          <Property Name="temat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="etap" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prowadzacy">
+          <Key>
+            <PropertyRef Name="prowadzacy_id" />
+          </Key>
+          <Property Name="prowadzacy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoria_id" Type="Int32" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="katedra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="haslo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="przedmioty">
+          <Key>
+            <PropertyRef Name="przedmiot_id" />
+          </Key>
+          <Property Name="przedmiot_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="etap" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studenci">
+          <Key>
+            <PropertyRef Name="student_id" />
+          </Key>
+          <Property Name="student_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nr_indexu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kierunek" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grupa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="haslo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studenci_w_projektach">
+          <Key>
+            <PropertyRef Name="student_id" />
+            <PropertyRef Name="projekt_id" />
+          </Key>
+          <Property Name="student_id" Type="Int32" Nullable="false" />
+          <Property Name="projekt_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dziennik_ocenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kategorie_prowadzacych" EntityType="Self.kategorie_prowadzacych" />
+          <EntitySet Name="oceny_projekt" EntityType="Self.oceny_projekt" />
+          <EntitySet Name="oceny_przedmiot" EntityType="Self.oceny_przedmiot" />
+          <EntitySet Name="projekty" EntityType="Self.projekty" />
+          <EntitySet Name="prowadzacy" EntityType="Self.prowadzacy" />
+          <EntitySet Name="przedmioty" EntityType="Self.przedmioty" />
+          <EntitySet Name="studenci" EntityType="Self.studenci" />
+          <EntitySet Name="studenci_w_projektach" EntityType="Self.studenci_w_projektach" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dziennik_ocenModelStoreContainer" CdmEntityContainer="dziennik_ocenEntities">
+          <EntitySetMapping Name="kategorie_prowadzacych">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.kategorie_prowadzacych">
+              <MappingFragment StoreEntitySet="kategorie_prowadzacych">
+                <ScalarProperty Name="kategoria_id" ColumnName="kategoria_id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oceny_projekt">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.oceny_projekt">
+              <MappingFragment StoreEntitySet="oceny_projekt">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="projekt_id" ColumnName="projekt_id" />
+                <ScalarProperty Name="ocena" ColumnName="ocena" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oceny_przedmiot">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.oceny_przedmiot">
+              <MappingFragment StoreEntitySet="oceny_przedmiot">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="przedmiot_id" ColumnName="przedmiot_id" />
+                <ScalarProperty Name="ocena" ColumnName="ocena" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projekty">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.projekty">
+              <MappingFragment StoreEntitySet="projekty">
+                <ScalarProperty Name="projekt_id" ColumnName="projekt_id" />
+                <ScalarProperty Name="prowadzacy_id" ColumnName="prowadzacy_id" />
+                <ScalarProperty Name="przedmiot_id" ColumnName="przedmiot_id" />
+                <ScalarProperty Name="temat" ColumnName="temat" />
+                <ScalarProperty Name="etap" ColumnName="etap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prowadzacy">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.prowadzacy">
+              <MappingFragment StoreEntitySet="prowadzacy">
+                <ScalarProperty Name="prowadzacy_id" ColumnName="prowadzacy_id" />
+                <ScalarProperty Name="kategoria_id" ColumnName="kategoria_id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="katedra" ColumnName="katedra" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="przedmioty">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.przedmioty">
+              <MappingFragment StoreEntitySet="przedmioty">
+                <ScalarProperty Name="przedmiot_id" ColumnName="przedmiot_id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="etap" ColumnName="etap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studenci">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.studenci">
+              <MappingFragment StoreEntitySet="studenci">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="nr_indexu" ColumnName="nr_indexu" />
+                <ScalarProperty Name="kierunek" ColumnName="kierunek" />
+                <ScalarProperty Name="grupa" ColumnName="grupa" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studenci_w_projektach">
+            <EntityTypeMapping TypeName="dziennik_ocenModel.studenci_w_projektach">
+              <MappingFragment StoreEntitySet="studenci_w_projektach">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="projekt_id" ColumnName="projekt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
