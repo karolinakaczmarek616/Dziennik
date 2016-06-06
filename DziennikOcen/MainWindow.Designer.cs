@@ -101,6 +101,7 @@
             this.buttonOceny.TabIndex = 2;
             this.buttonOceny.Text = "Oceny";
             this.buttonOceny.UseVisualStyleBackColor = true;
+            this.buttonOceny.Click += new System.EventHandler(this.buttonOceny_Click);
             // 
             // buttonPrzedmioty
             // 
